@@ -1,0 +1,15 @@
+body {
+    display: flex;
+}
+
+.esquerra {
+    position: relative;
+    height: 100vh;
+    width: 20vw;
+}
+
+.dreta {
+    position: relative;
+    height: 100vh;
+    width: 80vw;
+}

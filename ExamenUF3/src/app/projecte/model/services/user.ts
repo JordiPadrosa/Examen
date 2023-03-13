@@ -14,6 +14,11 @@ export class user {
         return this.http.get('https://www.dnd5eapi.co/api/monsters/', requestOptions);
     }
 
+    getMonsterByName(name: string):Observable<any> {
+        const requestOptions = this.createHeader();
+        return this.http.get('https://www.dnd5eapi.co/api/monsters/' + name, requestOptions);
+    }
+
     private createHeader() {
         const header = {
             'Access-Control-Allow-Origin': '*',

@@ -1,22 +1,42 @@
-<table>
-    <thead>
-        <th>Name</th>
-        <th>Acció</th>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Subtype</th>
-    </thead>
-    <tbody>
-        <tr *ngFor="let monster of monsters; let i = index">
-            <td>{{monster.name}}</td>
-            <td>
-                <img id="{{monster.url}}" (click)="getMonsterImg(monster.url)" src="/assets/engrenatge.png" width="40px">
-                <input type="checkbox">
-            </td>
-            <td *ngIf="imatge">{{monster.url}}</td>
-            <!-- <td *ngIf="artistes[i]">{{artistes[i].title}}</td>
-            <td *ngIf="artistes[i]">{{artistes[i].birth_date}}</td>
-            <td *ngIf="artistes[i]">{{artistes[i].death_date}}</td> -->
-        </tr>
-    </tbody>
-</table>
+<body>
+<div class="esquerra">
+    <button (click)="getMonsterDades()">Veure dades</button>
+    <table>
+        <thead>
+            <th>Name</th>
+            <th>Acció</th>
+        </thead>
+            <tbody>
+                <tr *ngFor="let monster of monsters">
+                    <td>{{monster.name}}</td>
+                    <td>
+                        <img (click)="getMonsterImg(monster)" src="/assets/engrenatge.png" width="40px">
+                        <input type="checkbox" (click)="afegirMonster(monster)">
+                    </td>
+                </tr>
+            </tbody>
+    </table>
+</div>
+
+<div class="dreta">
+    <img *ngIf="monster" [src]="monster.image" width="100px">
+    <table>
+        <thead>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Subtype</th>
+        </thead>
+            <tbody>
+                <tr *ngFor="let monster of dadesMonstersSelected">
+                    <td>{{monster.name}}</td>
+                    <td>{{monster.type}}</td>
+                    <td *ngFor="let action of monster.legendary_actions">
+                        {{action.name}}: {{action.desc}}
+                    </td>
+                    <td>
+                        <img  *ngIf="monster" [src]="'https://www.dnd5eapi.co'+monster.image" width="100px">
+                    </td>   
+            </tbody>
+    </table>
+</div>
+</body>

@@ -10,7 +10,9 @@ import { user } from '../../model/services/user';
 })
 export class FixaComponent{
   monsters: Array<Monster> = [];
-  imatge: boolean = false;
+  monster!: Monster;
+  monstersSelected: Array<Monster> = [];
+  dadesMonstersSelected: Array<Monster> = [];
 
   constructor(private httpClient: user) { 
     this.httpClient.getMonsters().subscribe(
@@ -20,8 +22,28 @@ export class FixaComponent{
       }
     )
   }
-  getMonsterImg(url: string) {
-
-    return url;
+  getMonsterImg(monster: Monster) {
+    this.monster = monster;
+    this.httpClient.getMonsterByName(monster.index).subscribe(
+      response => {
+        if(response.image != undefined){
+          this.monster.image = 'https://www.dnd5eapi.co'+response.image;
+        }
+      }
+    )
+  }
+  afegirMonster(monster: Monster){
+    this.monstersSelected.push(monster);
+    console.log(this.monstersSelected);
+  }
+  getMonsterDades(){
+    this.monstersSelected.forEach(monster => {
+      this.httpClient.getMonsterByName(monster.index).subscribe(
+        response => {
+          console.log(response);
+          this.dadesMonstersSelected.push(response);
+        }
+      )
+    });
   }
 }
