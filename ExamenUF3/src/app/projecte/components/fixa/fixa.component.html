@@ -1,0 +1,22 @@
+<table>
+    <thead>
+        <th>Name</th>
+        <th>Acció</th>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Subtype</th>
+    </thead>
+    <tbody>
+        <tr *ngFor="let monster of monsters; let i = index">
+            <td>{{monster.name}}</td>
+            <td>
+                <img id="{{monster.url}}" (click)="getMonsterImg(monster.url)" src="/assets/engrenatge.png" width="40px">
+                <input type="checkbox">
+            </td>
+            <td *ngIf="imatge">{{monster.url}}</td>
+            <!-- <td *ngIf="artistes[i]">{{artistes[i].title}}</td>
+            <td *ngIf="artistes[i]">{{artistes[i].birth_date}}</td>
+            <td *ngIf="artistes[i]">{{artistes[i].death_date}}</td> -->
+        </tr>
+    </tbody>
+</table>
